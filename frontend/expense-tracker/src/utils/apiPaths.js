@@ -1,5 +1,16 @@
-export const BASE_URL = "http://localhost:8000";
+import axios from "axios";
 
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+const axiosInstance = axios.create({
+  baseURL: `${baseURL}/api/v1`,
+});
+
+export default axiosInstance;
+
+  
+  
 // utils/apiPaths.js
 export const API_PATHS = {
     AUTH: {
