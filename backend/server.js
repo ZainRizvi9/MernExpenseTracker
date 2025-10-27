@@ -15,9 +15,10 @@ connectDB();
 
 // ✅ Allowed origins (frontend URLs)
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://mern-expense-tracker-git-main-zains-projects-9bea9349.vercel.app",
-];
+    "http://localhost:5173",
+    "https://mern-expense-tracker-git-main-zains-projects-9bea9349.vercel.app",
+    "https://mern-expense-tracker-red.vercel.app", 
+  ];
 
 // ✅ CORS configuration
 app.use(
