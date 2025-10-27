@@ -8,6 +8,8 @@ const Last30DaysExpenses = ({ data }) => {
   useEffect(() => {
     if (!data || data.length === 0) return;
 
+    console.log("📊 Raw expense data:", data); // <-- ADD THIS LINE
+
     // ✅ Filter only last 30 days of expenses
     const today = new Date();
     const filtered = data.filter((expense) => {
@@ -16,6 +18,7 @@ const Last30DaysExpenses = ({ data }) => {
       return diffInDays >= 0 && diffInDays <= 30;
     });
 
+    console.log("✅ Filtered last 30 days:", filtered); // <-- ADD THIS TO
     // ✅ Prepare chart data
     const result = prepareExpenseBarChartData(filtered);
     setChartData(result);
