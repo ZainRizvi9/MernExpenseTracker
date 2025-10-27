@@ -8,22 +8,42 @@ const Last30DaysExpenses = ({ data }) => {
   useEffect(() => {
     if (!data || data.length === 0) return;
 
-    console.log("📊 Raw expense data:", data); // <-- ADD THIS LINE
+    console.log("📊 Raw expense data:", data);
 
-    // ✅ Filter only last 30 days of expenses
     const today = new Date();
     const filtered = data.filter((expense) => {
-      const expenseDate = new Date(expense.date || expense.createdAt);
+      let expenseDate;
+
+      // ✅ Handle both real Date objects and formatted strings
+      try {
+        if (expense.date) {
+          // Try to parse ISO or fallback formatted string
+          expenseDate = new Date(expense.date);
+          if (isNaN(expenseDate)) {
+            // If it's like "23rd Oct 2025", manually parse it
+            const cleaned = expense.date
+              .replace(/(\d+)(st|nd|rd|th)/, "$1") // remove 'th', 'st', etc.
+              .replace(/(\w{3,})/, "$1");
+            expenseDate = new Date(cleaned);
+          }
+        } else if (expense.createdAt) {
+          expenseDate = new Date(expense.createdAt);
+        } else {
+          return false;
+        }
+      } catch {
+        return false;
+      }
+
       const diffInDays = (today - expenseDate) / (1000 * 60 * 60 * 24);
       return diffInDays >= 0 && diffInDays <= 30;
     });
 
-    console.log("✅ Filtered last 30 days:", filtered); // <-- ADD THIS TO
-    // ✅ Prepare chart data
-    const result = prepareExpenseBarChartData(filtered);
-    setChartData(result);
+    console.log("✅ Filtered last 30 days:", filtered);
 
-    return () => {};
+    const result = prepareExpenseBarChartData(filtered);
+    console.log("📈 Chart data:", result);
+    setChartData(result);
   }, [data]);
 
   return (
