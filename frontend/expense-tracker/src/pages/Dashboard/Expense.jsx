@@ -7,7 +7,8 @@ import ExpenseOverview from "../../components/Expense/ExpenseOverview";
 import ExpenseList from "../../components/Expense/ExpenseList";
 import DeleteAlert from "../../components/DeleteAlert";
 import axiosInstance from "../../utils/axiosInstance";
-import API_PATHS from "../../utils/apiPaths"; 
+import API_PATHS from "../../utils/apiPaths";  
+import { toast } from "react-toastify";
 
 const Expense = () => {
   useUserAuth();
