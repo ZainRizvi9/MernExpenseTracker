@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 import { useUserAuth } from '../../hooks/useUserAuth';
 import { useNavigate } from 'react-router-dom';
-import { API_PATHS } from '../../utils/apiPaths';
+import API_PATHS from "../../utils/apiPaths";
 import axiosInstance from '../../utils/axiosInstance';
 import InfoCard from '../../components/Cards/InfoCard';    
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu"
